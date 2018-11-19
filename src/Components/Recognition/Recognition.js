@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Recognition = () => {
+const Recognition = ({ imageUrl }) => {
 
     return(
-        <div className='center'>
-            <img alt='' src={'https://samples.clarifai.com/metro-north.jpg'} />
+        <div className='center ma'>
+            <div className='absolute mt2'>
+                <img alt='' src={imageUrl} width='500px' heigh='auto' />
+            </div>
         </div>
     );
 }

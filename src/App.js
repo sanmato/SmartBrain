@@ -30,21 +30,22 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      imageUrl: '',
     }
   }
 
   onInputChange = (event) => {
-    console.log(event.target.value);
+    this.setState({input: event.target.value});
   }
 
   onSubmitButton = () => {
-    console.log('click');
-    app.models.predict(Clarifai.COLOR_MODEL,
+    this.setState({imageUrl: this.state.input});
+    app.models.predict(Clarifai.FACE_DETECT_MODEL,
         // URL
-        "https://samples.clarifai.com/metro-north.jpg"
+        this.state.input
     )
     .then(function(response) {
-        // do something with responseconsole.log(response);
+        console.log(response);
         },
         function(err) {// there was an error
         }
@@ -61,7 +62,7 @@ class App extends Component {
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange} onSubmitButton={this.onSubmitButton}/>
-        <Recognition />
+        <Recognition imageUrl={this.state.imageUrl}/>
       </div>
     );
   }
